@@ -69,11 +69,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Google Cloud SDK
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          
+      - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
-          credentials: ${{ secrets.GCP_CREDENTIALS }}
+          install_components: app-engine-python
 
       - name: Deploy to App Engine
         run: |
