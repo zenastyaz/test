@@ -1,4 +1,4 @@
-name: Run Flask Tests & CI/CD
+name: Run Flask Test & CI/CD
 
 on:
   push:
