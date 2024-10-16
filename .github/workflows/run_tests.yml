@@ -20,8 +20,6 @@ jobs:
           - 5000:5000
         env:
           FLASK_ENV: development
-        options: >-
-          --entrypoint=""
         volumes:
           - .:/app
 
