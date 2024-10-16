@@ -42,15 +42,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Start Flask App
+      - name: Run Flask App
         run: |
           flask run --host=0.0.0.0 &
-          echo $! > flask.pid 
-          sleep 5 
+          sleep 5  
 
-      - name: Run test
-        run: python -m unittest discover -s tests -p "test_app.py"
-
-      - name: Stop Flask App
+      - name: Run Selenium tests
         run: |
-          kill $(cat flask.pid)
+          python -m unittest discover -s tests
+
+      - name: Stop Flask
+        run: |
+          kill $(lsof -t -i:5000)
